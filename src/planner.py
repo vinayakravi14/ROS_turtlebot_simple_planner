@@ -24,8 +24,7 @@ def runner(order):
     rate = rospy.Rate(2)
 
     msg.linear.x = float(orders[0])
-    msg.linear.y = float(orders[1])
-    msg.angular.z = 0
+    msg.angular.z = float(orders[1])
 
     rospy.loginfo(msg)
     pub.publish(msg)
@@ -51,7 +50,6 @@ if __name__ == '__main__':
     # # convert into array
     # orders = converter(orders)
     orders = geonav_conversions.ll2xy(90.0,0,0,0)
-    print ("[ALERT] ",orders)
 
     while True:
         # calling runner
